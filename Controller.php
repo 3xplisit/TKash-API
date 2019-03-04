@@ -1,5 +1,5 @@
 <?php
-namespace Tkash;
+
 date_default_timezone_set('Africa/Nairobi');
 
 /*-------------------------------------------*/
@@ -46,6 +46,7 @@ function __construct(){
   $this->security_credentials = '';
 
 
+
 }
 
 
@@ -84,13 +85,13 @@ function __construct(){
 
     if(isset($results->access_token ) && ( $results!=='false' ) ){
 
-    	//Return the access token received from the request.
-    	return $results->access_token;
+      //Return the access token received from the request.
+      return $results->access_token;
 
     }else{
 
-    	//Here an error occured and we need to capture and display it.
-    	die(json_encode(['errorMessage'=>$results->error,'errorDescription'=>$results->error_description]));
+      //Here an error occured and we need to capture and display it.
+      die(json_encode(['errorMessage'=>$results->error,'errorDescription'=>$results->error_description]));
     }
 
 
@@ -99,10 +100,9 @@ function __construct(){
 
 function _initRequest($requestURL =null, $post_data,$verb = null, $responseHeader = null){
 
-	(empty($requestURL)      ? die ('Request URL was not Set. Cannot send Request to Null URL') : $verb );
-    //(empty($post_data)       ? die ('Empty Requests not Allowed.') : $post_data );
-    (empty($verb)            ? die ('Please HTTP Request Verb') : $verb );
-    (empty($responseHeader)  ? die ('Reponse Header is not set use either 0 for Requests with no HTTP Code or 1 for Requests with HTTP Code') : $responseHeader );
+	  (empty($requestURL)     ? die ('Request URL was not Set. Cannot send Request to Null URL') : $verb );
+    (empty($verb)           ? die ('Please HTTP Request Verb') : $verb );
+    (empty($responseHeader) ? die ('Reponse Header is not set use either 0 for Requests with no HTTP Code or 1 for Requests with HTTP Code') : $responseHeader );
 
 
     /*-------------------------------------------------------------*/
@@ -132,7 +132,7 @@ function _initRequest($requestURL =null, $post_data,$verb = null, $responseHeade
     	switch($headers['http_code']){
 
     		case(200):
-    		$result = json_encode(['responseMessage'=>'Success','responseDesc'=>'Request was Sucessful.']);
+    		$result = json_encode(['responseMessage'=>'Success','responseDesc'=>'Request was Successful.']);
     		break;
 
     		default:
@@ -290,9 +290,11 @@ function RegisterURL($validationURL = null,$confirmationURL = null, $responseHea
 
 $call = new TKASHController;
 
+
+var_dump($call->getToken());
 //var_dump($call->RegisterURL("","",100));
-//echo($call->UpdateURL("https://dev.posta.co.ke/payments/production/tkash/serviceValidation.php","https://dev.posta.co.ke/payments/production/tkash/serviceValidation.php",100));
-echo( $call->C2BSimulate() );
+//echo($call->UpdateURL("","",100));
+//var_dump( $call->C2BSimulate() );
 //var_dump($call->replayNotification('cd2b','100'));
 
 
