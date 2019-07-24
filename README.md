@@ -4,7 +4,6 @@ T-Kash API. Not the Official SDK but the API will give insights to new and upcom
 How to call the file.
 Instantiate and instance of the TKASHController
 
-$controller = new TKASHController;
-
-$controller->RegisterURL('https://<your confirmationURL>','<Your Validation URL>',100));
+$call = new TKASHController;
+$call->RegisterURL("https://xyz.com/confirmation","https://xyz.com/validation",100);
   
