@@ -5,5 +5,5 @@ How to call the file.
 Instantiate and instance of the TKASHController
 
 $controller = new TKASHController;
-//Make api calls utilizing the functions created
-$controller->RegisterURL('https://<your confirmationURL>','<Your Validation URL>',100));; //This Function call accepts three parameters (1. Validation URL. 2. Confirmation URL 3. Numeric Value either 100 or 200 (100 being referrence for Response with headers only and 200 for json encoded responses.)
+$controller->RegisterURL('https://<your confirmationURL>','<Your Validation URL>',100)); 
+//This Function call accepts three parameters (1. Validation URL. 2. Confirmation URL 3. Numeric Value either 100 or 200 (100 being referrence for Response with headers only and 200 for json encoded responses)
