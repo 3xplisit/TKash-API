@@ -5,5 +5,6 @@ How to call the file.
 Instantiate and instance of the TKASHController
 
 $call = new TKASHController;
+
 $call->RegisterURL("https://xyz.com/confirmation","https://xyz.com/validation",100);
   
