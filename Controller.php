@@ -1,7 +1,8 @@
 <?php
-
+namespace Tkash;
 date_default_timezone_set('Africa/Nairobi');
 
+/*-------------------------------------------*/
 /*
 ***
 ------------------------------------------------------------------------------------------------------------------
@@ -17,10 +18,6 @@ the testing stage. To God be the Glory.
 
 - Initial testing of the API Endpoints and Documentation
 
--------------
-24 July 2019
-
--
 -------------------------------------------------------------------------------------------------------------------
 *
 ***/
@@ -33,29 +30,19 @@ function __construct(){
 
 
   $this->environment            = '';//The environment can either be {preprod,uat,dev,prod}
-
   $this->consumer_secret        = '';//The Applications Consumer Secret
   $this->consumer_key           = '';//The Applications Consumer Key
-
   $this->grant_username         = '';//Grant Username is required to Authorize generation of the access Token
   $this->grant_password         = '';//Grant Password is required to Authorize generation of the access Token
-
   $this->paybill_user           = '';//This Account is used to authorize B2B Payments
   $this->paybill_password       = '';//This Password is encrypted with the Public Key cert to be sent as a request for B2C or Bank Transfer..
-
   $this->b2c_username           = ''; //Used when initiating Transactional API's (B2C, Disbursements)
   $this->b2c_password           = '';
-
   $this->consumer_id            = '';//Consumer ID is Sent during production.
-
   $this->call_baseURL           = 'https://'.$this->environment.'.gw.mfs-tkl.com/';
-
   $this->responseType           = strtoupper('REST'); //Depending on the system, the response can either be in XML or JSON.
-
   $this->acceptHeaders          = ( $this->responseType=='REST' ? 'Accept: application/json' : 'Accept: application/xml' );
-
   /*--------------------------------------------------------------------------------------------------*/
-
   $this->security_credentials = '';
 
 
@@ -95,7 +82,7 @@ function __construct(){
 
     $results =  json_decode($exec);
 
-    if(isset($results->access_token )){
+    if(isset($results->access_token ) && ( $results!=='false' ) ){
 
     	//Return the access token received from the request.
     	return $results->access_token;
@@ -113,6 +100,7 @@ function __construct(){
 function _initRequest($requestURL =null, $post_data,$verb = null, $responseHeader = null){
 
 	(empty($requestURL)      ? die ('Request URL was not Set. Cannot send Request to Null URL') : $verb );
+    //(empty($post_data)       ? die ('Empty Requests not Allowed.') : $post_data );
     (empty($verb)            ? die ('Please HTTP Request Verb') : $verb );
     (empty($responseHeader)  ? die ('Reponse Header is not set use either 0 for Requests with no HTTP Code or 1 for Requests with HTTP Code') : $responseHeader );
 
@@ -177,7 +165,6 @@ function _initRequest($requestURL =null, $post_data,$verb = null, $responseHeade
 
 
 function RegisterURL($validationURL = null,$confirmationURL = null, $responseHeader = null){
-
 
 	(empty($validationURL)   ? die('Please Supply a Validation URL') : $validationURL);
 	(empty($confirmationURL) ? die('Please Supply a Confirmation URL') : $confirmationURL);
@@ -275,7 +262,7 @@ function RegisterURL($validationURL = null,$confirmationURL = null, $responseHea
    	if(!in_array(strtoupper($notificationType), $notificationTypeValues)){
 
 
-   		die(json_encode(['errorMessage'=>'Error on Request Channel','errorDescription'=>'Notification Type: '.$notificationType.' is Unknown.']));
+   		die(json_encode(['errorMessage'=>'Error on Request Channel','errorDescription'=>'Notification Type: '.$notificationType.' is Unknown. Allowed Types are ATP|B2C|C2B|B2B']));
 
 
    	}else{
@@ -304,8 +291,8 @@ function RegisterURL($validationURL = null,$confirmationURL = null, $responseHea
 $call = new TKASHController;
 
 //var_dump($call->RegisterURL("","",100));
-//var_dump($call->UpdateURL("","",200));
-//var_dump($call->C2BSimulate());
-//var_dump($call->replayNotification("",""));
+//echo($call->UpdateURL("https://dev.posta.co.ke/payments/production/tkash/serviceValidation.php","https://dev.posta.co.ke/payments/production/tkash/serviceValidation.php",100));
+echo( $call->C2BSimulate() );
+//var_dump($call->replayNotification('cd2b','100'));
 
 
