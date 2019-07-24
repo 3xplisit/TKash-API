@@ -1,8 +1,7 @@
 <?php
-namespace Tkash;
+
 date_default_timezone_set('Africa/Nairobi');
 
-/*-------------------------------------------*/
 /*
 ***
 ------------------------------------------------------------------------------------------------------------------
@@ -18,6 +17,10 @@ the testing stage. To God be the Glory.
 
 - Initial testing of the API Endpoints and Documentation
 
+-------------
+24 July 2019
+
+-
 -------------------------------------------------------------------------------------------------------------------
 *
 ***/
@@ -110,7 +113,6 @@ function __construct(){
 function _initRequest($requestURL =null, $post_data,$verb = null, $responseHeader = null){
 
 	(empty($requestURL)      ? die ('Request URL was not Set. Cannot send Request to Null URL') : $verb );
-    //(empty($post_data)       ? die ('Empty Requests not Allowed.') : $post_data );
     (empty($verb)            ? die ('Please HTTP Request Verb') : $verb );
     (empty($responseHeader)  ? die ('Reponse Header is not set use either 0 for Requests with no HTTP Code or 1 for Requests with HTTP Code') : $responseHeader );
 
@@ -175,6 +177,7 @@ function _initRequest($requestURL =null, $post_data,$verb = null, $responseHeade
 
 
 function RegisterURL($validationURL = null,$confirmationURL = null, $responseHeader = null){
+
 
 	(empty($validationURL)   ? die('Please Supply a Validation URL') : $validationURL);
 	(empty($confirmationURL) ? die('Please Supply a Confirmation URL') : $confirmationURL);
