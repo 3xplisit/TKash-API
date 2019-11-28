@@ -10,8 +10,7 @@ Author: Jesse Kariuki
 Email:  jessy3g@gmail.com
 Tel:    0700099269
 
-Description: This File Contains all the classes to be Passed to the various endpoints during 
-the testing stage. To God be the Glory.
+Description: This File Contains a class and Functions to be called during execution of the api during the testing stage. To God be the Glory.
 
 ------------
 14 April 2019
